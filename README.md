@@ -32,7 +32,7 @@ git clone git@github.com:skinkvi/systeminfo.git
 2. Перейдите в директорию проекта:
 
 ```bash
-cd your-project
+cd systeminfo
 ```
 
 3. Запустите Docker Compose:
