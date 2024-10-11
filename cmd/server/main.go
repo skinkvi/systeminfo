@@ -29,7 +29,6 @@ func main() {
 
 	logger.Info().Msg("App created")
 
-	// Add signal handling to capture shutdown reason
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 
@@ -37,7 +36,6 @@ func main() {
 		sig := <-stop
 		logger.Info().Msgf("Caught signal: %v", sig)
 		logger.Info().Msg("Gracefully stopping...")
-		// Add cleanup code here if needed
 		os.Exit(0)
 	}()
 
