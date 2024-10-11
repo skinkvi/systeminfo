@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: system_infodb
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build: .
+    command: ["go", "run", "cmd/server/main.go"]
+    ports:
+      - "11011:11011"
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: system_infodb
+      DB_SSLMODE: disable
+      DB_URL: "postgres://postgres:postgres@db:5432/system_infodb"
+      GRPC_PORT: 11011
+      HTTP_PORT: 8080
+
+  client:
+    build: .
+    command: ["sh", "-c", "sleep 5 && go run cmd/client/main.go"]
+    depends_on:
+      - server
+
