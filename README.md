@@ -26,7 +26,7 @@
 1. Клонируйте репозиторий:
 
 ```bash
-git clone https://github.com/yourusername/your-project.git
+git clone git@github.com:skinkvi/systeminfo.git
 ```
 
 2. Перейдите в директорию проекта:
