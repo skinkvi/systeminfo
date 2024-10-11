@@ -45,6 +45,6 @@ docker-compose up
 
 5. Откройте Postman, curl или браузер и перейдите по одному из следующих эндпоинтов:
    - `http://localhost:8080/cpu`
-   - `http://localhost:8080/process`
+   - `http://localhost:8080/proccess`
 
 Там можно увидеть информацию о CPU и процессах.
