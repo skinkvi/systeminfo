@@ -13,7 +13,6 @@ import (
 func main() {
 	logger := logger.GetLogger()
 
-	// Подключение к серверу по имени сервиса и порту
 	conn, err := grpc.Dial("server:11011", grpc.WithInsecure())
 	if err != nil {
 		logger.Fatal().Err(err).Msg("Failed to connect")
